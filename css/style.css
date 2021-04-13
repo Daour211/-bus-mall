@@ -18,10 +18,15 @@ header h2{
     padding-top: 20px;
 }
 main #imagesDiv{
-    margin-left: 80px;
+    text-align: center;
+    margin-top: 20px;
 }
 main #imagesDiv img{
-    padding: 20px;
+    padding-left: 20px;
+    border-style: solid;
+    margin-left: 20px;
+    border-color: rgb(95, 48, 48);
+    border-width: 2px;
 }
 main button{
     position: relative;
@@ -41,10 +46,15 @@ main button:hover{
 }
 
 #list{
-    margin-bottom: 20px;
+    margin: 20px;
+    border-width: 2px;
+    border-style: dotted;
+    border-color: rgb(223, 220, 22);
+    padding-bottom: 10px;
 }
 #list h4{
     padding-left: 40px;
+    padding-top: 10px;
     size: 25px;
     color: rgb(202, 70, 17);
 }
@@ -54,6 +64,10 @@ main button:hover{
     color: rgb(41, 226, 35);
     padding-left: 30px;    
     
+}
+
+main div canvas{
+    margin: 10px;
 }
 
 footer{

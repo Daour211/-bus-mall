@@ -11,7 +11,7 @@ let thirdIndex;
 let attempts = 10;
 let counter = 0;
 
-let setOfPhotos = [];
+// let setOfPhotos = [];
 
 let objectsNameArray = [];
 let votesArray = [];
@@ -56,13 +56,23 @@ function generateRandomPhoto() {
 }
 
 
-
+let setOfPhotos = [];
 function render() {
     // firstIndex = generateRandomPhoto();
     // secondIndex = generateRandomPhoto();
     // thirdIndex = generateRandomPhoto();
 
-    // Do-While loop  solution:
+    // console.log('before',setOfPhotos);
+
+    // Do-While loop  solution: for the condition of displying new set of photos each time
+
+    //while loop solution:  for the condition of displying new set of photos each time
+    // while (firstIndex === secondIndex ||firstIndex === thirdIndex || secondIndex === thirdIndex || setOfPhotos.includes (firstIndex) ||setOfPhotos.includes (secondIndex) || setOfPhotos.includes (thirdIndex)){
+    //     firstIndex = generateRandomPhoto();
+    //     secondIndex = generateRandomPhoto();
+    //     thirdIndex = generateRandomPhoto();
+
+    // }
 
     do {
         firstIndex = generateRandomPhoto();
@@ -74,13 +84,6 @@ function render() {
 
 
 
-    //while loop solution:
-    // while (firstIndex === secondIndex ||firstIndex === thirdIndex || secondIndex === thirdIndex || setOfPhotos.includes (firstIndex) ||setOfPhotos.includes (secondIndex) || setOfPhotos.includes (thirdIndex)){
-    //     firstIndex = generateRandomPhoto();
-    //     secondIndex = generateRandomPhoto();
-    //     thirdIndex = generateRandomPhoto();
-
-    // }
 
     setOfPhotos = [];
 
@@ -88,14 +91,9 @@ function render() {
     setOfPhotos.push(secondIndex);
     setOfPhotos.push(thirdIndex);
 
-
-
-
-
-
-
-
-
+    // Another way to solve without pushing:
+    // setOfPhotos = [firstIndex,secondIndex,thirdIndex]
+    // console.log('after',setOfPhotos);
 
 
 
@@ -105,12 +103,53 @@ function render() {
     thirdImage.src = Catalog.allObjects[thirdIndex].source;
 
     // add the shown value for each image that appear
-    firstImage.textContent = Catalog.allObjects[firstIndex].shown++;
-    secondImage.textContent = Catalog.allObjects[secondIndex].shown++;
-    thirdImage.textContent = Catalog.allObjects[thirdIndex].shown++;
+    // firstImage.textContent = 
+    Catalog.allObjects[firstIndex].shown++;
+    // secondImage.textContent = 
+    Catalog.allObjects[secondIndex].shown++;
+    // thirdImage.textContent = 
+    Catalog.allObjects[thirdIndex].shown++;
 }
 
+
+// local storage functions:
+
+function turnString (){
+
+    let imageStorage = JSON.stringify(Catalog.allObjects)
+
+    // console.log(Catalog.allObjects);
+
+    // console.log(imageStorage);
+
+    localStorage.setItem('images', imageStorage);
+    
+    
+}
+
+function getImage(){
+
+    let callImage = localStorage.getItem('images');
+
+    console.log('getting image', callImage );
+
+    let displayImage = JSON.parse(callImage);
+    console.log(displayImage);
+
+    if (displayImage !== null) {
+        Catalog.allObjects= displayImage;
+    }
+
+
+
+
+}
+
+
+// rendering function for images:
 render();
+
+
 
 let div = document.getElementById('imagesDiv');
 
@@ -141,6 +180,17 @@ function pickPhoto(event) {
 
 
     } else {
+
+        // local storage functions
+
+              
+
+        turnString();
+        // getImage();
+
+        
+
+        
 
         div.removeEventListener('click', pickPhoto);
 
@@ -232,3 +282,6 @@ function chart() {
     });
 
 }
+
+// turnString();
+getImage();
